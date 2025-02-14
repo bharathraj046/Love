@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Valentine's Day 💖</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: radial-gradient(circle, #1a1a40, #000);
+            color: #ffccd5;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 3rem;
+            text-shadow: 0 0 20px #ff4d6d;
+        }
+
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .star {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: twinkle 2s infinite alternate;
+        }
+
+        .message, .secret-message {
+            display: none;
+            opacity: 0;
+            font-size: 1.5rem;
+            margin-top: 20px;
+            color: #ff9eb3;
+            text-shadow: 0 0 10px #ff4d6d;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .secret-message {
+            font-size: 2rem;
+            color: #ffcccb;
+            text-shadow: 0 0 15px #ff4d6d;
+        }
+
+        .response-buttons {
+            display: none;
+            margin-top: 20px;
+        }
+
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border: none;
+            background: #ff4d6d;
+            color: white;
+            border-radius: 20px;
+            cursor: pointer;
+            box-shadow: 0 0 15px #ff4d6d;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #e03160;
+            box-shadow: 0 0 20px #e03160;
+            transform: scale(1.1);
+        }
+
+        .no-button {
+            position: absolute;
+            transition: all 0.3s ease;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.3; }
+            50% { opacity: 1; }
+            100% { opacity: 0.5; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="stars"></div>
+    <h1>💖 Happy Valentine's Day! 💖</h1>
+
+    <button onclick="showMessage()">Click for a Romantic Message</button>
+    <p class="message" id="message">You're my shining star in this beautiful night sky. Love you! Chef 💫💖</p>
+    <p class="secret-message" id="secret-message">💍 Will you be mine forever? 💕</p>
+    
+    <div class="response-buttons" id="response-buttons">
+        <button onclick="showResponse('yes')">Yes 💖</button>
+        <button class="no-button" id="no-button" onmouseover="moveButton()">No 💔</button>
+    </div>
+
+    <script>
+        function showMessage() {
+            let message = document.getElementById('message');
+            let secretMessage = document.getElementById('secret-message');
+            let responseButtons = document.getElementById('response-buttons');
+            
+            message.style.display = 'block';
+            message.style.opacity = '1';
+
+            // Show "Will you be mine?" and buttons together
+            secretMessage.style.display = 'block';
+            secretMessage.style.opacity = '1';
+            responseButtons.style.display = 'block';
+        }
+
+        function showResponse(answer) {
+            if (answer === 'yes') {
+                alert('Yay! You made my day! 💖🥰');
+            }
+        }
+
+        function moveButton() {
+            let noButton = document.getElementById('no-button');
+            let x = Math.random() * (window.innerWidth - 100);
+            let y = Math.random() * (window.innerHeight - 100);
+            noButton.style.left = `${x}px`;
+            noButton.style.top = `${y}px`;
+        }
+
+        function createStars() {
+            let starsContainer = document.querySelector('.stars');
+            for (let i = 0; i < 50; i++) {
+                let star = document.createElement('div');
+                star.classList.add('star');
+                star.style.left = Math.random() * 100 + 'vw';
+                star.style.top = Math.random() * 100 + 'vh';
+                star.style.animationDuration = Math.random() * 3 + 2 + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+
+        createStars();
+    </script>
+
+</body>
+</html>
